@@ -2,11 +2,14 @@ package gb;
 
 import java.awt.*;
 
-public abstract class Sprite {
+public abstract class Sprite implements ViewFigure {
     protected float x;
     protected float y;
     protected float halfWidth;
     protected float halfHeight;
+
+    private float vX = (float)(100f + (Math.random() * 200f));
+    private float vY = (float)(100f + (Math.random() * 200f));
 
     protected float getLeft() {
         return x - halfWidth;
@@ -39,7 +42,27 @@ public abstract class Sprite {
         return 2f * halfHeight;
     }
 
-    void update(GameCanvas canvas, float deltaTime) {}
-    void render(GameCanvas canvas, Graphics g) {}
+    @Override
+    public void update(GameCanvas canvas, float deltaTime) {
+        x += vX * deltaTime;
+        y += vY * deltaTime;
+        if (getLeft() < canvas.getLeft()) {
+            setLeft(canvas.getLeft());
+            vX = -vX;
+        }
+        if (getRight() > canvas.getRight()) {
+            setRight(canvas.getRight());
+            vX = -vX;
+        }
+        if (getTop() < canvas.getTop()) {
+            setTop(canvas.getTop());
+            vY = -vY;
+        }
+        if (getBottom() > canvas.getBottom()) {
+            setBottom(canvas.getBottom());
+            vY = -vY;
+        }
+
+    }
 
 }

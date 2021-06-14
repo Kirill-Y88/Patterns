@@ -32,7 +32,8 @@ public class MainCircles extends JFrame {
 
     private void initApplication() {
         for (int i = 0; i < sprites.length; i++) {
-            sprites[i] = new Ball();
+            if(i%2 == 0) sprites[i] = new Ball();
+            else sprites[i] = new Rectangle();
         }
     }
 
