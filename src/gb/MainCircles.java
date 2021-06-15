@@ -9,7 +9,8 @@ public class MainCircles extends JFrame {
     private static final int WINDOW_WIDTH = 800;
     private static final int WINDOW_HEIGHT = 600;
 
-    Sprite[] sprites = new Sprite[10];
+    //Sprite[] sprites = new Sprite[10];
+    Sprite_[] sprites = new Sprite_[10];
 
     public static void main(String[] args) {
        SwingUtilities.invokeLater(new Runnable() {
@@ -32,7 +33,8 @@ public class MainCircles extends JFrame {
 
     private void initApplication() {
         for (int i = 0; i < sprites.length; i++) {
-            sprites[i] = new Ball();
+            //sprites[i] = new Ball();
+            sprites[i] = new Sprite_(new FigureBall());
         }
     }
 
