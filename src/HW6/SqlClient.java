@@ -28,6 +28,7 @@ public class SqlClient {
         if(cashPeople.getPeopleFromCash(id)!=null){
             return cashPeople.getPeopleFromCash(id);
         }else {
+            connect();
         String query = String.format("select * from people where id='%s'", id);
         try (ResultSet set = statement.executeQuery(query)) {
             while (set.next()) {
@@ -35,11 +36,13 @@ public class SqlClient {
                 people.setId(set.getInt(1));
                 people.setName(set.getString(2));
                 people.setAge(set.getInt(3));
+                disconnect();
                 return people;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        disconnect();
         return null;}
 
     }
