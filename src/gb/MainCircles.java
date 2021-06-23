@@ -11,6 +11,10 @@ public class MainCircles extends JFrame {
 
     Sprite[] sprites = new Sprite[10];
 
+
+    private FigureFactory figureFactoryBall = new BallFactory();
+    private FigureFactory figureFactoryRect = new RectangleFactory();
+
     public static void main(String[] args) {
        SwingUtilities.invokeLater(new Runnable() {
            @Override
@@ -32,7 +36,10 @@ public class MainCircles extends JFrame {
 
     private void initApplication() {
         for (int i = 0; i < sprites.length; i++) {
-            sprites[i] = new Ball();
+            if(i%2==0){
+                sprites[i] = figureFactoryBall.create();
+            }else sprites[i] = figureFactoryRect.create();
+
         }
     }
 
